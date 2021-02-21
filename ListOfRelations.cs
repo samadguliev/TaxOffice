@@ -14,6 +14,7 @@ namespace TaxOffice
     public partial class ListOfRelations : Form
     {
         SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Projects\TaxOffice\Database.mdf;Integrated Security=True");
+        private int RelationId = 0;
 
         public ListOfRelations()
         {
@@ -44,12 +45,8 @@ namespace TaxOffice
 
         }
 
-        private void ListOfRelations_Load(object sender, EventArgs e)
+        private void RefreshTable()
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseDataSet.entity_activity". При необходимости она может быть перемещена или удалена.
-            //this.entity_activityTableAdapter.Fill(this.databaseDataSet.entity_activity);
-            //RelationsTable.Columns.Add("name", "name");
-
             try
             {
                 Con.Open();
@@ -59,6 +56,8 @@ namespace TaxOffice
                 DataTable dtbl = new DataTable();
                 sqlData.Fill(dtbl);
                 RelationsTable.DataSource = dtbl;
+                RelationAddEntitySelect.SelectedIndex = -1;
+                RelationAddActSelect.SelectedIndex = -1;
 
                 Con.Close();
             }
@@ -66,6 +65,103 @@ namespace TaxOffice
             {
 
                 MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        private void Reset()
+        {
+            RelationSave.Text = "Save";
+            RelationId = 0;
+            RelationDelete.Enabled = false;
+
+            RelationAddEntitySelect.SelectedIndex = -1;
+            RelationAddActSelect.SelectedIndex = -1;
+        }
+
+        private void ListOfRelations_Load(object sender, EventArgs e)
+        {
+            this.activityTableAdapter.Fill(this.databaseDataSet.activity);
+            this.entityTableAdapter.Fill(this.databaseDataSet.entity);
+            RefreshTable();
+        }
+
+        private void RelationSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Con.Open();
+
+                SqlCommand sqlCmd = new SqlCommand("RelationAddOrEdit", Con);
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                if (RelationSave.Text == "Save")
+                {
+                    sqlCmd.Parameters.AddWithValue("@mode", "Add");
+                    sqlCmd.Parameters.AddWithValue("@Id", RelationId);
+                    sqlCmd.Parameters.AddWithValue("@entityId", Convert.ToInt32(RelationAddEntitySelect.SelectedValue));
+                    sqlCmd.Parameters.AddWithValue("@activityId", Convert.ToInt32(RelationAddActSelect.SelectedValue));
+                    sqlCmd.ExecuteNonQuery();
+                    MessageBox.Show("Saved successfully");
+                }
+                else 
+                {
+                    sqlCmd.Parameters.AddWithValue("@mode", "Edit");
+                    sqlCmd.Parameters.AddWithValue("@Id", RelationId);
+                    sqlCmd.Parameters.AddWithValue("@entityId", Convert.ToInt32(RelationAddEntitySelect.SelectedValue));
+                    sqlCmd.Parameters.AddWithValue("@activityId", Convert.ToInt32(RelationAddActSelect.SelectedValue));
+                    sqlCmd.ExecuteNonQuery();
+                    MessageBox.Show("Updated successfully");
+                }
+                Con.Close();
+                RefreshTable();
+                Reset();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error message");
+            }
+        }
+
+        private void RelationDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Con.Open();
+
+                SqlCommand sqlCmd = new SqlCommand("RelationDelete", Con);
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                sqlCmd.Parameters.AddWithValue("@Id", RelationId);
+                sqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Deleted successfully");
+                Reset();
+
+                Con.Close();
+                RefreshTable();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error message");
+            }
+        }
+
+        private void RelationReset_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        private void RelationsTable_DoubleClick(object sender, EventArgs e)
+        {
+            if (RelationsTable.CurrentRow.Index != -1)
+            {
+                RelationId = Convert.ToInt32(RelationsTable.CurrentRow.Cells[0].Value.ToString());
+
+                RelationAddEntitySelect.SelectedValue = Convert.ToInt32(RelationsTable.CurrentRow.Cells[1].Value.ToString());
+                RelationAddActSelect.SelectedValue = Convert.ToInt32(RelationsTable.CurrentRow.Cells[2].Value.ToString());
+
+                RelationSave.Text = "Update";
+                RelationDelete.Enabled = true;
             }
         }
     }

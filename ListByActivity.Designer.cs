@@ -272,7 +272,7 @@ namespace TaxOffice
             this.EntitySave.Name = "EntitySave";
             this.EntitySave.Size = new System.Drawing.Size(138, 48);
             this.EntitySave.TabIndex = 15;
-            this.EntitySave.Text = "Add";
+            this.EntitySave.Text = "Save";
             this.EntitySave.UseVisualStyleBackColor = false;
             this.EntitySave.Click += new System.EventHandler(this.EntitySave_Click);
             // 

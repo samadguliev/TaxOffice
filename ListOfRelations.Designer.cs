@@ -30,6 +30,8 @@ namespace TaxOffice
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label nameLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListOfRelations));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.databaseDataSet = new TaxOffice.DatabaseDataSet();
@@ -50,12 +52,47 @@ namespace TaxOffice
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.entity_activityBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.RelationsTable = new System.Windows.Forms.DataGridView();
+            this.RelationDelete = new System.Windows.Forms.Button();
+            this.RelationSave = new System.Windows.Forms.Button();
+            this.RelationAddEntitySelect = new System.Windows.Forms.ComboBox();
+            this.entityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.entityTableAdapter = new TaxOffice.DatabaseDataSetTableAdapters.entityTableAdapter();
+            this.RelationAddActSelect = new System.Windows.Forms.ComboBox();
+            this.activityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.activityTableAdapter = new TaxOffice.DatabaseDataSetTableAdapters.activityTableAdapter();
+            this.RelationReset = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
+            nameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.entity_activityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.entity_activityBindingNavigator)).BeginInit();
             this.entity_activityBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RelationsTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.entityBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activityBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            label1.ForeColor = System.Drawing.SystemColors.Window;
+            label1.Location = new System.Drawing.Point(13, 395);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(103, 24);
+            label1.TabIndex = 32;
+            label1.Text = "Вид деят.:";
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            nameLabel.ForeColor = System.Drawing.SystemColors.Window;
+            nameLabel.Location = new System.Drawing.Point(13, 334);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(102, 24);
+            nameLabel.TabIndex = 27;
+            nameLabel.Text = "Название:";
             // 
             // databaseDataSet
             // 
@@ -209,7 +246,7 @@ namespace TaxOffice
             this.RelationsTable.BackgroundColor = System.Drawing.Color.RoyalBlue;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -220,6 +257,88 @@ namespace TaxOffice
             this.RelationsTable.Name = "RelationsTable";
             this.RelationsTable.Size = new System.Drawing.Size(1350, 240);
             this.RelationsTable.TabIndex = 2;
+            this.RelationsTable.DoubleClick += new System.EventHandler(this.RelationsTable_DoubleClick);
+            // 
+            // RelationDelete
+            // 
+            this.RelationDelete.BackColor = System.Drawing.Color.DarkOrange;
+            this.RelationDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RelationDelete.ForeColor = System.Drawing.SystemColors.Control;
+            this.RelationDelete.Location = new System.Drawing.Point(445, 447);
+            this.RelationDelete.Name = "RelationDelete";
+            this.RelationDelete.Size = new System.Drawing.Size(138, 48);
+            this.RelationDelete.TabIndex = 19;
+            this.RelationDelete.Text = "Delete";
+            this.RelationDelete.UseVisualStyleBackColor = false;
+            this.RelationDelete.Click += new System.EventHandler(this.RelationDelete_Click);
+            // 
+            // RelationSave
+            // 
+            this.RelationSave.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.RelationSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RelationSave.ForeColor = System.Drawing.SystemColors.Control;
+            this.RelationSave.Location = new System.Drawing.Point(118, 447);
+            this.RelationSave.Name = "RelationSave";
+            this.RelationSave.Size = new System.Drawing.Size(138, 48);
+            this.RelationSave.TabIndex = 18;
+            this.RelationSave.Text = "Save";
+            this.RelationSave.UseVisualStyleBackColor = false;
+            this.RelationSave.Click += new System.EventHandler(this.RelationSave_Click);
+            // 
+            // RelationAddEntitySelect
+            // 
+            this.RelationAddEntitySelect.DataSource = this.entityBindingSource;
+            this.RelationAddEntitySelect.DisplayMember = "name";
+            this.RelationAddEntitySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RelationAddEntitySelect.FormattingEnabled = true;
+            this.RelationAddEntitySelect.Location = new System.Drawing.Point(118, 334);
+            this.RelationAddEntitySelect.Name = "RelationAddEntitySelect";
+            this.RelationAddEntitySelect.Size = new System.Drawing.Size(611, 32);
+            this.RelationAddEntitySelect.TabIndex = 34;
+            this.RelationAddEntitySelect.ValueMember = "Id";
+            // 
+            // entityBindingSource
+            // 
+            this.entityBindingSource.DataMember = "entity";
+            this.entityBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // entityTableAdapter
+            // 
+            this.entityTableAdapter.ClearBeforeFill = true;
+            // 
+            // RelationAddActSelect
+            // 
+            this.RelationAddActSelect.DataSource = this.activityBindingSource;
+            this.RelationAddActSelect.DisplayMember = "name";
+            this.RelationAddActSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RelationAddActSelect.FormattingEnabled = true;
+            this.RelationAddActSelect.Location = new System.Drawing.Point(118, 392);
+            this.RelationAddActSelect.Name = "RelationAddActSelect";
+            this.RelationAddActSelect.Size = new System.Drawing.Size(611, 32);
+            this.RelationAddActSelect.TabIndex = 35;
+            this.RelationAddActSelect.ValueMember = "Id";
+            // 
+            // activityBindingSource
+            // 
+            this.activityBindingSource.DataMember = "activity";
+            this.activityBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // activityTableAdapter
+            // 
+            this.activityTableAdapter.ClearBeforeFill = true;
+            // 
+            // RelationReset
+            // 
+            this.RelationReset.BackColor = System.Drawing.Color.Gold;
+            this.RelationReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RelationReset.ForeColor = System.Drawing.SystemColors.Control;
+            this.RelationReset.Location = new System.Drawing.Point(283, 447);
+            this.RelationReset.Name = "RelationReset";
+            this.RelationReset.Size = new System.Drawing.Size(138, 48);
+            this.RelationReset.TabIndex = 20;
+            this.RelationReset.Text = "Reset";
+            this.RelationReset.UseVisualStyleBackColor = false;
+            this.RelationReset.Click += new System.EventHandler(this.RelationReset_Click);
             // 
             // ListOfRelations
             // 
@@ -227,6 +346,13 @@ namespace TaxOffice
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(1404, 761);
+            this.Controls.Add(this.RelationAddActSelect);
+            this.Controls.Add(this.RelationAddEntitySelect);
+            this.Controls.Add(label1);
+            this.Controls.Add(nameLabel);
+            this.Controls.Add(this.RelationReset);
+            this.Controls.Add(this.RelationDelete);
+            this.Controls.Add(this.RelationSave);
             this.Controls.Add(this.RelationsTable);
             this.Controls.Add(this.entity_activityBindingNavigator);
             this.Name = "ListOfRelations";
@@ -238,6 +364,8 @@ namespace TaxOffice
             this.entity_activityBindingNavigator.ResumeLayout(false);
             this.entity_activityBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RelationsTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.entityBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activityBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,5 +391,14 @@ namespace TaxOffice
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton entity_activityBindingNavigatorSaveItem;
         private System.Windows.Forms.DataGridView RelationsTable;
+        private System.Windows.Forms.Button RelationDelete;
+        private System.Windows.Forms.Button RelationSave;
+        private System.Windows.Forms.ComboBox RelationAddEntitySelect;
+        private System.Windows.Forms.BindingSource entityBindingSource;
+        private DatabaseDataSetTableAdapters.entityTableAdapter entityTableAdapter;
+        private System.Windows.Forms.ComboBox RelationAddActSelect;
+        private System.Windows.Forms.BindingSource activityBindingSource;
+        private DatabaseDataSetTableAdapters.activityTableAdapter activityTableAdapter;
+        private System.Windows.Forms.Button RelationReset;
     }
 }

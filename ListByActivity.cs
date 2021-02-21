@@ -95,7 +95,6 @@ namespace TaxOffice
                     sqlCmd.Parameters.AddWithValue("@kpp", kppTextBox.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@address", addressTextBox.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@phone", phoneTextBox.Text.Trim());
-                    //sqlCmd.Parameters.AddWithValue("@selectedActivity", EntityAddActivitySelect.SelectedValue);
                     sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Saved successfully");
                 }
@@ -108,7 +107,6 @@ namespace TaxOffice
                     sqlCmd.Parameters.AddWithValue("@kpp", kppTextBox.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@address", addressTextBox.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@phone", phoneTextBox.Text.Trim());
-                    //sqlCmd.Parameters.AddWithValue("@selectedActivity", EntityAddActivitySelect.SelectedValue);
                     sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Updated successfully");
                 }
