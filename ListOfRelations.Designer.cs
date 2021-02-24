@@ -61,6 +61,7 @@ namespace TaxOffice
             this.activityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.activityTableAdapter = new TaxOffice.DatabaseDataSetTableAdapters.activityTableAdapter();
             this.RelationReset = new System.Windows.Forms.Button();
+            this.PrintRelations = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
@@ -340,12 +341,26 @@ namespace TaxOffice
             this.RelationReset.UseVisualStyleBackColor = false;
             this.RelationReset.Click += new System.EventHandler(this.RelationReset_Click);
             // 
+            // PrintRelations
+            // 
+            this.PrintRelations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.PrintRelations.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PrintRelations.ForeColor = System.Drawing.SystemColors.Control;
+            this.PrintRelations.Location = new System.Drawing.Point(118, 601);
+            this.PrintRelations.Name = "PrintRelations";
+            this.PrintRelations.Size = new System.Drawing.Size(138, 48);
+            this.PrintRelations.TabIndex = 36;
+            this.PrintRelations.Text = "Print";
+            this.PrintRelations.UseVisualStyleBackColor = false;
+            this.PrintRelations.Click += new System.EventHandler(this.PrintRelations_Click);
+            // 
             // ListOfRelations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(1404, 761);
+            this.Controls.Add(this.PrintRelations);
             this.Controls.Add(this.RelationAddActSelect);
             this.Controls.Add(this.RelationAddEntitySelect);
             this.Controls.Add(label1);
@@ -400,5 +415,6 @@ namespace TaxOffice
         private System.Windows.Forms.BindingSource activityBindingSource;
         private DatabaseDataSetTableAdapters.activityTableAdapter activityTableAdapter;
         private System.Windows.Forms.Button RelationReset;
+        private System.Windows.Forms.Button PrintRelations;
     }
 }

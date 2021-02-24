@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using DGVPrinterHelper;
 
 namespace TaxOffice
 {
@@ -174,6 +175,18 @@ namespace TaxOffice
             {
                 MessageBox.Show(ex.Message, "Error message");
             }
+        }
+
+        private void PrintListByActivity_Click(object sender, EventArgs e)
+        {
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "Виды деятельности юр. лиц";
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.Footer = "Виды деятельности";
+            printer.FooterSpacing = 15;
+            printer.PrintPreviewDataGridView(EntityTable);
         }
     }
 }

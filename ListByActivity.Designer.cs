@@ -35,7 +35,6 @@ namespace TaxOffice
             System.Windows.Forms.Label kppLabel;
             System.Windows.Forms.Label addressLabel;
             System.Windows.Forms.Label phoneLabel;
-            System.Windows.Forms.Label label1;
             this.databaseDataSet = new TaxOffice.DatabaseDataSet();
             this.activityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.activityTableAdapter = new TaxOffice.DatabaseDataSetTableAdapters.activityTableAdapter();
@@ -56,18 +55,17 @@ namespace TaxOffice
             this.EntitySave = new System.Windows.Forms.Button();
             this.EntityDelete = new System.Windows.Forms.Button();
             this.EntityReset = new System.Windows.Forms.Button();
-            this.EntityAddActivitySelect = new System.Windows.Forms.ComboBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.innTextBox = new System.Windows.Forms.TextBox();
             this.kppTextBox = new System.Windows.Forms.TextBox();
             this.phoneTextBox = new System.Windows.Forms.TextBox();
             this.addressTextBox = new System.Windows.Forms.TextBox();
+            this.PrintListByActivity = new System.Windows.Forms.Button();
             nameLabel = new System.Windows.Forms.Label();
             innLabel = new System.Windows.Forms.Label();
             kppLabel = new System.Windows.Forms.Label();
             addressLabel = new System.Windows.Forms.Label();
             phoneLabel = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activityBindingSource1)).BeginInit();
@@ -130,17 +128,6 @@ namespace TaxOffice
             phoneLabel.Size = new System.Drawing.Size(95, 24);
             phoneLabel.TabIndex = 13;
             phoneLabel.Text = "Телефон:";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            label1.ForeColor = System.Drawing.SystemColors.Window;
-            label1.Location = new System.Drawing.Point(61, 596);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(103, 24);
-            label1.TabIndex = 19;
-            label1.Text = "Вид деят.:";
             // 
             // databaseDataSet
             // 
@@ -302,18 +289,6 @@ namespace TaxOffice
             this.EntityReset.UseVisualStyleBackColor = false;
             this.EntityReset.Click += new System.EventHandler(this.EntityReset_Click);
             // 
-            // EntityAddActivitySelect
-            // 
-            this.EntityAddActivitySelect.DataSource = this.activityBindingSource;
-            this.EntityAddActivitySelect.DisplayMember = "name";
-            this.EntityAddActivitySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.EntityAddActivitySelect.FormattingEnabled = true;
-            this.EntityAddActivitySelect.Location = new System.Drawing.Point(165, 596);
-            this.EntityAddActivitySelect.Name = "EntityAddActivitySelect";
-            this.EntityAddActivitySelect.Size = new System.Drawing.Size(611, 32);
-            this.EntityAddActivitySelect.TabIndex = 20;
-            this.EntityAddActivitySelect.ValueMember = "Id";
-            // 
             // nameTextBox
             // 
             this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -354,19 +329,31 @@ namespace TaxOffice
             this.addressTextBox.Size = new System.Drawing.Size(809, 29);
             this.addressTextBox.TabIndex = 26;
             // 
+            // PrintListByActivity
+            // 
+            this.PrintListByActivity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.PrintListByActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PrintListByActivity.ForeColor = System.Drawing.SystemColors.Control;
+            this.PrintListByActivity.Location = new System.Drawing.Point(836, 648);
+            this.PrintListByActivity.Name = "PrintListByActivity";
+            this.PrintListByActivity.Size = new System.Drawing.Size(138, 48);
+            this.PrintListByActivity.TabIndex = 38;
+            this.PrintListByActivity.Text = "Print";
+            this.PrintListByActivity.UseVisualStyleBackColor = false;
+            this.PrintListByActivity.Click += new System.EventHandler(this.PrintListByActivity_Click);
+            // 
             // ListByActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(1404, 761);
+            this.Controls.Add(this.PrintListByActivity);
             this.Controls.Add(this.addressTextBox);
             this.Controls.Add(this.phoneTextBox);
             this.Controls.Add(this.kppTextBox);
             this.Controls.Add(this.innTextBox);
             this.Controls.Add(this.nameTextBox);
-            this.Controls.Add(this.EntityAddActivitySelect);
-            this.Controls.Add(label1);
             this.Controls.Add(this.EntityReset);
             this.Controls.Add(this.EntityDelete);
             this.Controls.Add(this.EntitySave);
@@ -406,7 +393,6 @@ namespace TaxOffice
         private System.Windows.Forms.Button EntitySave;
         private System.Windows.Forms.Button EntityDelete;
         private System.Windows.Forms.Button EntityReset;
-        private System.Windows.Forms.ComboBox EntityAddActivitySelect;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox innTextBox;
         private System.Windows.Forms.TextBox kppTextBox;
@@ -418,5 +404,6 @@ namespace TaxOffice
         private System.Windows.Forms.DataGridViewTextBoxColumn kpp;
         private System.Windows.Forms.DataGridViewTextBoxColumn address;
         private System.Windows.Forms.DataGridViewTextBoxColumn phone;
+        private System.Windows.Forms.Button PrintListByActivity;
     }
 }

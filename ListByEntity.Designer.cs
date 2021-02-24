@@ -45,6 +45,7 @@ namespace TaxOffice
             this.ActivityReset = new System.Windows.Forms.Button();
             this.ActivityDelete = new System.Windows.Forms.Button();
             this.ActivitySave = new System.Windows.Forms.Button();
+            this.PrintListByEntity = new System.Windows.Forms.Button();
             nameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.entityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
@@ -183,12 +184,26 @@ namespace TaxOffice
             this.ActivitySave.UseVisualStyleBackColor = false;
             this.ActivitySave.Click += new System.EventHandler(this.ActivitySave_Click);
             // 
+            // PrintListByEntity
+            // 
+            this.PrintListByEntity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.PrintListByEntity.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PrintListByEntity.ForeColor = System.Drawing.SystemColors.Control;
+            this.PrintListByEntity.Location = new System.Drawing.Point(142, 612);
+            this.PrintListByEntity.Name = "PrintListByEntity";
+            this.PrintListByEntity.Size = new System.Drawing.Size(138, 48);
+            this.PrintListByEntity.TabIndex = 37;
+            this.PrintListByEntity.Text = "Print";
+            this.PrintListByEntity.UseVisualStyleBackColor = false;
+            this.PrintListByEntity.Click += new System.EventHandler(this.PrintListByEntity_Click);
+            // 
             // ListByEntity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(1404, 761);
+            this.Controls.Add(this.PrintListByEntity);
             this.Controls.Add(this.ActivityReset);
             this.Controls.Add(this.ActivityDelete);
             this.Controls.Add(this.ActivitySave);
@@ -224,5 +239,6 @@ namespace TaxOffice
         private System.Windows.Forms.Button ActivitySave;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Button PrintListByEntity;
     }
 }

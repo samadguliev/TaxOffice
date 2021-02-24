@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using DGVPrinterHelper;
 
 namespace TaxOffice
 {
@@ -163,6 +164,18 @@ namespace TaxOffice
                 RelationSave.Text = "Update";
                 RelationDelete.Enabled = true;
             }
+        }
+
+        private void PrintRelations_Click(object sender, EventArgs e)
+        {
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "Виды деятельности юр. лиц";
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.Footer = "Виды деятельности";
+            printer.FooterSpacing = 15;
+            printer.PrintPreviewDataGridView(RelationsTable);
         }
     }
 }
